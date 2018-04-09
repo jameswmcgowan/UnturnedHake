@@ -59,6 +59,7 @@
     <Compile Include="Classes\MainMenu.cs" />
     <Compile Include="Classes\Menu.cs" />
     <Compile Include="Classes\MethodUtil.cs" />
+    <Compile Include="Classes\MiscFunctions.cs" />
     <Compile Include="Classes\PLook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\SChannel.cs" />
