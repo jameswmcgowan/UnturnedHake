@@ -80,11 +80,11 @@ namespace BeyondCheatFree
 		// Token: 0x0600000C RID: 12 RVA: 0x00002BDF File Offset: 0x00000DDF
 		private void Update()
 		{
-			if (Input.GetKeyUp("282"))
+			if (Input.GetKeyUp(KeyCode.F1))
 			{
 				this.open_menu(1);
 			}
-			if (Input.GetKeyUp("283"))
+			if (Input.GetKeyUp(KeyCode.F2))
 			{
 				this.open_menu(2);
 			}

@@ -152,7 +152,8 @@ namespace BeyondCheatFree
 					}
 				}
 			}
-			if (EspMenu.ShowVehicles)
+
+            if (EspMenu.ShowVehicles)
 			{
 				foreach (InteractableVehicle interactableVehicle in this._vehicles)
 				{

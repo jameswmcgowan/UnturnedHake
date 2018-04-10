@@ -3,13 +3,21 @@ using System.Reflection;
 using SDG.Unturned;
 using UnityEngine;
 
+
+
 namespace BeyondCheatFree
 {
+    
 	// Token: 0x02000005 RID: 5
 	internal class MainMenu : MonoBehaviour
 	{
-		// Token: 0x06000010 RID: 16 RVA: 0x00002C7B File Offset: 0x00000E7B
-		private void Start()
+        public string aimbot_enable_text = "Enable Aimbot";
+        public string aimbot_enableplayers_text = "Players: Off";
+
+        menu_Aimbot AIMBOTTAB = new menu_Aimbot();
+
+        // Token: 0x06000010 RID: 16 RVA: 0x00002C7B File Offset: 0x00000E7B
+        private void Start()
 		{
 			MainMenu.SpreadAim = typeof(ItemGunAsset).GetField("spreadAim", BindingFlags.Instance | BindingFlags.Public);
 			MainMenu.SpreadHip = typeof(ItemGunAsset).GetField("spreadHip", BindingFlags.Instance | BindingFlags.Public);
@@ -35,7 +43,9 @@ namespace BeyondCheatFree
 			GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical(new GUILayoutOption[0]);
-			if (GUILayout.Button("Set day", new GUILayoutOption[0]))
+
+
+            if (GUILayout.Button("Set day", new GUILayoutOption[0]))
 			{
 				LightingManager.time = (uint)(LightingManager.cycle * LevelLighting.transition);
 			}
@@ -102,25 +112,25 @@ namespace BeyondCheatFree
 		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
 		private void DisableBallistic()
 		{
-			FieldInfo field = typeof(ItemGunAsset).GetField("ballisticForce", BindingFlags.Instance | BindingFlags.Public);
-			if (field != null)
-			{
-				field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
-			}
 			FieldInfo field2 = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
-			if (field2 == null)
-			{
-				return;
-			}
-			field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
+            if (field2 == null)
+            {
+                return;
+            }
+            else
+            {
+                field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
+            }
 		}
 
 		// Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
 		private void Update()
 		{
+            AIMBOTTAB.Update();
+
 			if (this._zoom)
 			{
-				if (Input.GetKeyUp("274"))
+				if (Input.GetKeyUp(KeyCode.UpArrow))
 				{
 					this._zoomSize += 0.3f;
 					if (this._zoomSize > 70f)
@@ -129,7 +139,7 @@ namespace BeyondCheatFree
 					}
 					OptionsSettings.fov = this._zoomSize;
 				}
-				else if (Input.GetKeyUp("273"))
+				else if (Input.GetKeyUp(KeyCode.DownArrow))
 				{
 					this._zoomSize -= 0.3f;
 					OptionsSettings.fov = this._zoomSize;

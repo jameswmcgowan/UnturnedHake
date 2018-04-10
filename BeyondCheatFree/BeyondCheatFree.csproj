@@ -51,6 +51,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Aimbot.cs" />
     <Compile Include="Classes\BeyondConfig.cs" />
     <Compile Include="Classes\Esp.cs" />
     <Compile Include="Classes\EspMenu.cs" />
