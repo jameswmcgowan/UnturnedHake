@@ -31,10 +31,15 @@ namespace BeyondCheatFree
 			MainMenu.NoSpread = GUILayout.Toggle(MainMenu.NoSpread, "No spread", new GUILayoutOption[0]);
 			this._zoom = GUILayout.Toggle(this._zoom, "Enable FOV", new GUILayoutOption[0]);
 			GUILayout.Space(150f);
-			GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
-			GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
-			GUILayout.EndVertical();
-			GUILayout.BeginVertical(new GUILayoutOption[0]);
+			MainMenu.Aimbot_Enable = GUILayout.Toggle(MainMenu.NoSpread, "Enable Aimbot", new GUILayoutOption[0]);
+			MainMenu.Aimbot_Players = GUILayout.Toggle(MainMenu.NoSpread, "At Players", new GUILayoutOption[0]);
+			MainMenu.Aimbot_Zombies = GUILayout.Toggle(MainMenu.NoSpread, "At Zombies", new GUILayoutOption[0]);
+			MainMenu.Aimbot_Animals = GUILayout.Toggle(MainMenu.NoSpread, "At Animals", new GUILayoutOption[0]);
+			
+			//GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
+			//GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
+			//GUILayout.EndVertical();
+			//GUILayout.BeginVertical(new GUILayoutOption[0]);
 			if (GUILayout.Button("Set day", new GUILayoutOption[0]))
 			{
 				LightingManager.time = (uint)(LightingManager.cycle * LevelLighting.transition);
@@ -141,6 +146,7 @@ namespace BeyondCheatFree
 			{
 				Player.player.animator.viewSway = new Vector3(0f, 0f, 0f);
 			}
+			if (
 		}
 
 		// Token: 0x06000015 RID: 21 RVA: 0x000030E0 File Offset: 0x000012E0
@@ -161,6 +167,16 @@ namespace BeyondCheatFree
 			this._spreadCache--;
 		}
 
+
+		public static bool Aimbot_Master;
+		
+	 	public static bool Aimbot_Enable;
+		
+		public static bool Aimbot_Players;
+		
+		public static bool Aimbot_Zombies;
+		
+		public static bool Aimbot_Animals;
 		// Token: 0x04000015 RID: 21
 		public static bool NoRecoil;
 
