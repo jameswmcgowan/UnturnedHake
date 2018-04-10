@@ -39,7 +39,6 @@ namespace BeyondCheatFree
 			MainMenu.NoSpread = GUILayout.Toggle(MainMenu.NoSpread, "No spread", new GUILayoutOption[0]);
 			this._zoom = GUILayout.Toggle(this._zoom, "Enable FOV", new GUILayoutOption[0]);
 			GUILayout.Space(150f);
-<<<<<<< HEAD
 			GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
 			GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
 			GUILayout.EndVertical();
@@ -47,18 +46,6 @@ namespace BeyondCheatFree
 
 
             if (GUILayout.Button("Set day", new GUILayoutOption[0]))
-=======
-			MainMenu.Aimbot_Enable = GUILayout.Toggle(MainMenu.NoSpread, "Enable Aimbot", new GUILayoutOption[0]);
-			MainMenu.Aimbot_Players = GUILayout.Toggle(MainMenu.NoSpread, "At Players", new GUILayoutOption[0]);
-			MainMenu.Aimbot_Zombies = GUILayout.Toggle(MainMenu.NoSpread, "At Zombies", new GUILayoutOption[0]);
-			MainMenu.Aimbot_Animals = GUILayout.Toggle(MainMenu.NoSpread, "At Animals", new GUILayoutOption[0]);
-			
-			//GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
-			//GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
-			//GUILayout.EndVertical();
-			//GUILayout.BeginVertical(new GUILayoutOption[0]);
-			if (GUILayout.Button("Set day", new GUILayoutOption[0]))
->>>>>>> 9c7644c65da9a26fd28d568a1f735ebe2219b873
 			{
 				LightingManager.time = (uint)(LightingManager.cycle * LevelLighting.transition);
 			}
@@ -122,17 +109,10 @@ namespace BeyondCheatFree
 			field2.SetValue(null, 0f);
 		}
 
-<<<<<<< HEAD
 		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
 		private void DisableBallistic()
 		{
 			FieldInfo field2 = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
-=======
-        // Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
-        private void DisableBallistic()
-        {
-            FieldInfo field2 = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
->>>>>>> 9c7644c65da9a26fd28d568a1f735ebe2219b873
             if (field2 == null)
             {
                 return;
@@ -141,17 +121,10 @@ namespace BeyondCheatFree
             {
                 field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
             }
-<<<<<<< HEAD
 		}
 
 		// Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
 		private void Update()
-=======
-        }
-
-        // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
-        private void Update()
->>>>>>> 9c7644c65da9a26fd28d568a1f735ebe2219b873
 		{
             AIMBOTTAB.Update();
 
@@ -180,7 +153,6 @@ namespace BeyondCheatFree
 			{
 				Player.player.animator.viewSway = new Vector3(0f, 0f, 0f);
 			}
-			if (
 		}
 
 		// Token: 0x06000015 RID: 21 RVA: 0x000030E0 File Offset: 0x000012E0
@@ -201,16 +173,6 @@ namespace BeyondCheatFree
 			this._spreadCache--;
 		}
 
-
-		public static bool Aimbot_Master;
-		
-	 	public static bool Aimbot_Enable;
-		
-		public static bool Aimbot_Players;
-		
-		public static bool Aimbot_Zombies;
-		
-		public static bool Aimbot_Animals;
 		// Token: 0x04000015 RID: 21
 		public static bool NoRecoil;
 
