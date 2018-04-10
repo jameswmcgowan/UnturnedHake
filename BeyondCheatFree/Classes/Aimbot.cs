@@ -43,8 +43,8 @@ namespace BeyondCheatFree
         public static bool ignore_admins = true;
         public static bool ignore_walls = true;
         bool use_gun_distance = true;
-        bool aim_zombies = false;
-        bool aim_animals = false;
+        public static bool aim_zombies = false;
+        public static bool aim_animals = false;
         float distance = 200f;
         int aim_update = 20;
         int at_pos = 0;
