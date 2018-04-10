@@ -99,28 +99,26 @@ namespace BeyondCheatFree
 			field2.SetValue(null, 0f);
 		}
 
-		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
-		private void DisableBallistic()
-		{
-			FieldInfo field = typeof(ItemGunAsset).GetField("ballisticForce", BindingFlags.Instance | BindingFlags.Public);
-			if (field != null)
-			{
-				field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
-			}
-			FieldInfo field2 = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
-			if (field2 == null)
-			{
-				return;
-			}
-			field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
-		}
+        // Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
+        private void DisableBallistic()
+        {
+            FieldInfo field2 = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
+            if (field2 == null)
+            {
+                return;
+            }
+            else
+            {
+                field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
+            }
+        }
 
-		// Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
-		private void Update()
+        // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
+        private void Update()
 		{
 			if (this._zoom)
 			{
-				if (Input.GetKeyUp("274"))
+				if (Input.GetKeyUp(KeyCode.UpArrow))
 				{
 					this._zoomSize += 0.3f;
 					if (this._zoomSize > 70f)
@@ -129,7 +127,7 @@ namespace BeyondCheatFree
 					}
 					OptionsSettings.fov = this._zoomSize;
 				}
-				else if (Input.GetKeyUp("273"))
+				else if (Input.GetKeyUp(KeyCode.DownArrow))
 				{
 					this._zoomSize -= 0.3f;
 					OptionsSettings.fov = this._zoomSize;

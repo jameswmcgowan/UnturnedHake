@@ -77,21 +77,21 @@ namespace BeyondCheatFree
 			//MethodUtil.Hook(array3[0], array3[1]);
 		}
 
-		// Token: 0x0600000C RID: 12 RVA: 0x00002BDF File Offset: 0x00000DDF
-		private void Update()
-		{
-			if (Input.GetKeyUp("282"))
-			{
-				this.open_menu(1);
-			}
-			if (Input.GetKeyUp("283"))
-			{
-				this.open_menu(2);
-			}
-		}
+        // Token: 0x0600000C RID: 12 RVA: 0x00002BDF File Offset: 0x00000DDF
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.F1))
+            {
+                this.open_menu(1);
+            }
+            if (Input.GetKeyUp(KeyCode.F2))
+            {
+                this.open_menu(2);
+            }
+        }
 
-		// Token: 0x0600000D RID: 13 RVA: 0x00002C08 File Offset: 0x00000E08
-		private void open_menu(int num)
+        // Token: 0x0600000D RID: 13 RVA: 0x00002C08 File Offset: 0x00000E08
+        private void open_menu(int num)
 		{
 			if (Menu.MenuOpened == num)
 			{
