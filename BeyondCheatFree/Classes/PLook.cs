@@ -2,7 +2,7 @@
 using SDG.Unturned;
 using UnityEngine;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
     // Token: 0x02000009 RID: 9
     internal class PLook : PlayerLook

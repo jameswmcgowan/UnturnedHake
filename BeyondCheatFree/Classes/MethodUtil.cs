@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x0200000A RID: 10
 	internal static class MethodUtil

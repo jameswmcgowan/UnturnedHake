@@ -3,7 +3,7 @@ using System.IO;
 using SDG.Unturned;
 using UnityEngine;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x02000008 RID: 8
 	internal class SChannel : SteamChannel

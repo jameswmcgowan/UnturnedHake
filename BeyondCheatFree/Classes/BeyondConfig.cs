@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x02000007 RID: 7
 	public class BeyondConfig

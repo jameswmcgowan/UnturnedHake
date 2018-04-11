@@ -6,7 +6,7 @@ using SDG.Framework.Modules;
 using SDG.Unturned;
 using UnityEngine;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x02000004 RID: 4
 	internal class Menu : MonoBehaviour

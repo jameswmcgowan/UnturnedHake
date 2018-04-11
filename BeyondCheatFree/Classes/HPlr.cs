@@ -2,7 +2,7 @@
 using SDG.Unturned;
 using Steamworks;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x02000006 RID: 6
 	internal class HPlr : Player

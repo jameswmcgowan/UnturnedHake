@@ -2,7 +2,7 @@
 using SDG.Framework.Modules;
 using UnityEngine;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x0200000B RID: 11
 	public class Load : IModuleNexus

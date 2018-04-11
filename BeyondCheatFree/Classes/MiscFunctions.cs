@@ -5,7 +5,7 @@ using UnityEngine;
 using SDG.Unturned;
 using Steamworks;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
     public class MiscFunctions
     {

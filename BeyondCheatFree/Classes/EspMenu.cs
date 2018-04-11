@@ -3,7 +3,7 @@ using HighlightingSystem;
 using SDG.Unturned;
 using UnityEngine;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
 	// Token: 0x02000003 RID: 3
 	internal class EspMenu : MonoBehaviour

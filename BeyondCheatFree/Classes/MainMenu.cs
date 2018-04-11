@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
     
 	// Token: 0x02000005 RID: 5

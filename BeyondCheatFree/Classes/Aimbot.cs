@@ -6,7 +6,7 @@ using UnityEngine;
 using SDG.Unturned;
 using System.Runtime.InteropServices;
 
-namespace BeyondCheatFree
+namespace UnturnedHake
 {
     public class AimbotType
     {
@@ -51,20 +51,6 @@ namespace BeyondCheatFree
 
         List<AimbotType> at = new List<AimbotType>();
 
-        public bool getIsOn()
-        {
-            return isOn;
-        }
-
-        public void setIsOn(bool a)
-        {
-            isOn = a;
-        }
-
-        public void toggleOn()
-        {
-            isOn = !isOn;
-        }
 
         public void Start()
         {
@@ -160,8 +146,8 @@ namespace BeyondCheatFree
 
         void aim(GameObject obj)
         {
-            if (GetAsyncKeyState(1) == -32768)
-            {
+            //if (GetAsyncKeyState(1) == -32768)
+            //{
                 Vector3 skullPosition = getAimPosition(obj.transform);
                 MiscFunctions.getLocalPlayer().transform.LookAt(skullPosition);
                 MiscFunctions.getLocalPlayer().transform.eulerAngles = new Vector3(0f, MiscFunctions.getLocalPlayer().transform.rotation.eulerAngles.y, 0f);
@@ -177,7 +163,7 @@ namespace BeyondCheatFree
                 }
                 MiscFunctions.getLocalPlayer().look.GetType().GetField("_pitch", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(MiscFunctions.getLocalPlayer().look, num4);
                 MiscFunctions.getLocalPlayer().look.GetType().GetField("_yaw", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(MiscFunctions.getLocalPlayer().look, MiscFunctions.getLocalPlayer().transform.rotation.eulerAngles.y);
-            }
+            //}
         }
 
         public Vector3 getAimPosition(Transform parent)
