@@ -11,9 +11,6 @@ namespace BeyondCheatFree
 	// Token: 0x02000005 RID: 5
 	internal class MainMenu : MonoBehaviour
 	{
-        public string aimbot_enable_text = "Enable Aimbot";
-        public string aimbot_enableplayers_text = "Players: Off";
-
         menu_Aimbot AIMBOTTAB = new menu_Aimbot();
 
         // Token: 0x06000010 RID: 16 RVA: 0x00002C7B File Offset: 0x00000E7B
@@ -45,7 +42,7 @@ namespace BeyondCheatFree
             MainMenu.Aimbot_Animals = GUILayout.Toggle(MainMenu.Aimbot_Animals, "At Animals", new GUILayoutOption[0]);
 
             GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
-            GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
+            GUILayout.Label("Unturned Hake", new GUILayoutOption[0]);
             GUILayout.EndVertical();
             GUILayout.BeginVertical(new GUILayoutOption[0]);
 
@@ -235,7 +232,7 @@ namespace BeyondCheatFree
 		public static bool IncreaseMeleeRange;
 
 		// Token: 0x0400001D RID: 29
-		public static string WebText = "POSEIDON DEV TEAM";
+		public static string WebText = "b1g(large) unturned hack";
 
 		// Token: 0x0400001E RID: 30
 		public static int ShakeDelay;
