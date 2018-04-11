@@ -120,15 +120,19 @@ namespace BeyondCheatFree
 		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
 		public void DisableBallistic()
 		{
-			typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-            typeof(ItemBarrelAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
-            typeof(ItemGunAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-            typeof(ItemBarrelAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
+			FieldInfo field = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+            FieldInfo field2 = typeof(ItemBarrelAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
+            FieldInfo field3 = typeof(ItemGunAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+            FieldInfo field4 = typeof(ItemBarrelAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
 
-            //if (field2 != null)
-            //{
-            //    field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
-            //}
+            if (field != null || 0.f) field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.f);
+                
+	    if (field2 != null || 0.f) field2.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0.f);
+
+	    if (field3 != null || 0.f) field3.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.f);
+	    	
+	    if (field4 != null || 0.f) field4.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0.f);
+	    	
         }
 
         // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
@@ -190,7 +194,7 @@ namespace BeyondCheatFree
 				float num2 = (float)((spreadHip != null) ? spreadHip.GetValue((ItemGunAsset)Player.player.equipment.asset) : null);
 				MainMenu.SpreadAim.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
 				MainMenu.SpreadHip.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-				//this.DisableBallistic();
+				this.DisableBallistic();
 				return;
 			}
 			this._spreadCache--;
