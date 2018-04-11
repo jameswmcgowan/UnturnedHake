@@ -141,7 +141,6 @@ namespace UnturnedHake
             {
                 aim(obj);
             }
-
         }
 
         void aim(GameObject obj)
@@ -290,48 +289,12 @@ namespace UnturnedHake
 
         bool canAttack(SteamPlayer p)
         {
-                  if (ignore_admins)
-                  {
-                       if (!p.isAdmin)
-                       {
-                           return true;
-                       }
-                       else
-                       {
-                           return false;
-                       }
-                  }
-                  else
-                  {
-                      return true;
-                  }
-
+            return ignore_admins ? !p.isAdmin : true;
         }
 
         bool correctDist(Vector3 pos)
         {
-            if (use_gun_distance)
-            {
-                if (MiscFunctions.getDistance(pos) <= ((ItemWeaponAsset)MiscFunctions.getLocalPlayer().equipment.asset).range)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (MiscFunctions.getDistance(pos) <= distance)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            return use_gun_distance ? MiscFunctions.getDistance(pos) <= ((ItemWeaponAsset)MiscFunctions.getLocalPlayer().equipment.asset).range : MiscFunctions.getDistance(pos) <= distance;
         }
 
         Player getNPlayer()
