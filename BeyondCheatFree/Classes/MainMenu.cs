@@ -44,10 +44,10 @@ namespace BeyondCheatFree
             MainMenu.Aimbot_Zombies = GUILayout.Toggle(MainMenu.Aimbot_Zombies, "At Zombies", new GUILayoutOption[0]);
             MainMenu.Aimbot_Animals = GUILayout.Toggle(MainMenu.Aimbot_Animals, "At Animals", new GUILayoutOption[0]);
 
-            //GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
-            //GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
-            //GUILayout.EndVertical();
-            //GUILayout.BeginVertical(new GUILayoutOption[0]);
+            GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
+            GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
+            GUILayout.EndVertical();
+            GUILayout.BeginVertical(new GUILayoutOption[0]);
 
             if (GUILayout.Button("Disable Ballistics", new GUILayoutOption[0]))
             {
