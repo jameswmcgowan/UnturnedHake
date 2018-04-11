@@ -51,49 +51,34 @@ namespace UnturnedHake
                 DisableBallistic();
             }
             if (GUILayout.Button("Set day", new GUILayoutOption[0]))
-			{
-				LightingManager.time = (uint)(LightingManager.cycle * LevelLighting.transition);
-			}
-			if (GUILayout.Button("Night vision: " + this._nightVision, new GUILayoutOption[0]))
-			{
-				this._nightVision++;
-				if (this._nightVision > 3)
-				{
-					this._nightVision = 0;
-				}
-				LevelLighting.vision = (ELightingVision)this._nightVision;
-				LevelLighting.updateLighting();
-				LevelLighting.updateLocal();
-				PlayerLifeUI.updateGrayscale();
-			}
-			if (GUILayout.Button("No Respawn Timer", new GUILayoutOption[0]))
-			{
-				this.DisableTimers();
-			}
-			if (GUILayout.Button("No Fog" + Menu.GetToggleText(RenderSettings.fog), new GUILayoutOption[0]))
-			{
-				RenderSettings.fog = !RenderSettings.fog;
-			}
-			if (GUILayout.Button("No Rain", new GUILayoutOption[0]))
-			{
-				LevelLighting.rainyness = 0;
-			}
-			if (GUILayout.Button("No Snow", new GUILayoutOption[0]))
-			{
-				LevelLighting.snowLevel = 0f;
-				RenderSettings.fogDensity = 0f;
-				FieldInfo field = typeof(LevelLighting).GetField("isSnow", BindingFlags.Static | BindingFlags.NonPublic);
-				if (field != null)
-				{
-					field.SetValue(null, false);
-				}
-				FieldInfo field2 = typeof(LevelLighting).GetField("snownyess", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-				if (field2 != null)
-				{
-					field2.SetValue(null, 0f);
-				}
-			}
-			GUILayout.EndVertical();
+            {
+                LightingManager.time = (uint)(LightingManager.cycle * LevelLighting.transition);
+            }
+            if (GUILayout.Button("Night vision: " + this._nightVision, new GUILayoutOption[0]))
+            {
+                this._nightVision++;
+                if (this._nightVision > 3)
+                {
+                    this._nightVision = 0;
+                }
+                LevelLighting.vision = (ELightingVision)this._nightVision;
+                LevelLighting.updateLighting();
+                LevelLighting.updateLocal();
+                PlayerLifeUI.updateGrayscale();
+            }
+            if (GUILayout.Button("No Respawn Timer", new GUILayoutOption[0]))
+            {
+                this.DisableTimers();
+            }
+            if (GUILayout.Button("No Fog" + Menu.GetToggleText(RenderSettings.fog), new GUILayoutOption[0]))
+            {
+                RenderSettings.fog = !RenderSettings.fog;
+            }
+            if (GUILayout.Button("No Rain", new GUILayoutOption[0]))
+            {
+                LevelLighting.rainyness = 0;
+            }
+            GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
 			GUILayout.EndArea();
 		}
