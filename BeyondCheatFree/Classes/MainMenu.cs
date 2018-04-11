@@ -117,19 +117,15 @@ namespace BeyondCheatFree
 		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
 		public void DisableBallistic()
 		{
-			FieldInfo field = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-            FieldInfo field2 = typeof(ItemBarrelAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
-            FieldInfo field3 = typeof(ItemGunAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-            FieldInfo field4 = typeof(ItemBarrelAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
-
-            if (field != null || 0.f) field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.f);
-                
-	    if (field2 != null || 0.f) field2.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0.f);
-
-	    if (field3 != null || 0.f) field3.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.f);
-	    	
-	    if (field4 != null || 0.f) field4.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0.f);
-	    	
+            //one of these will do it :o
+            FieldInfo field = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
+            FieldInfo field2 = typeof(ItemBarrelAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
+            FieldInfo field3 = typeof(ItemGunAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public);
+            FieldInfo field4 = typeof(ItemBarrelAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public);
+            if (field != null) field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0);               
+	        if (field2 != null) field2.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0);
+	        if (field3 != null) field3.SetValue((ItemGunAsset)Player.player.equipment.asset, 0);	    	
+	        if (field4 != null) field4.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0);
         }
 
         // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228

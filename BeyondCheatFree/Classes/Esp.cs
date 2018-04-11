@@ -132,21 +132,12 @@ namespace BeyondCheatFree
 									GUI.Label(new Rect(vector2.x, vector2.y, 150f, 60f), string.Format("<size=12><color=#0000ffff>{0}</color></size>", Math.Round((double)num2)));
                                     if (EspMenu.PlayerEspBoxes)
                                     {
-                                        //top/bottom
-					float dabbb = Math.Round((double)num2)
-                                        new Rect(vector2.x, vector2.y, 60f - Math.Round((double)(dabbb * 0.4)), 1f);
-                                        new Rect(vector2.x, (vector2.y + 150) - dabbb, 60f - Math.Round((double)(dabbb * 0.4)), 1f);
-                                        //sides
-                                        new Rect(vector2.x, vector2.y, 1f, 150f - dabbb);
-                                        new Rect(vector2.x, Math.Round((double)((vector2.y + 60) - (dabbb * 0.4))), 1f, 150f - dabbb);
-					
-					//both of these should work but one rounds cuz i was being autistic most likely use the second one pls.
-					
-					new Rect(vector2.x, vector2.y, 60f - (num2 * 0.4), 1f);
-                                        new Rect(vector2.x, (vector2.y + 150) - num2, 60f - (num2 * 0.4), 1f);
+                                        //top bottom
+					                    new Rect(vector2.x, vector2.y, 60f - (float)(num2 * 0.4), 1f);
+                                        new Rect(vector2.x, (vector2.y + 150) - num2, 60f - (float)(num2 * 0.4), 1f);
                                         //sides
                                         new Rect(vector2.x, vector2.y, 1f, 150f - num2);
-                                        new Rect(vector2.x, (vector2.y + 60) - (num2 * 0.4), 1f, 150f - num2);
+                                        new Rect(vector2.x, (vector2.y + 60) - (float)(num2 * 0.4), 1f, 150f - num2);
                                     }
                                 }
 							}
