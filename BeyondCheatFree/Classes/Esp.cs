@@ -97,6 +97,16 @@ namespace BeyondCheatFree
 								if (EspMenu.ShowPlayers)
 								{
 									GUI.Label(new Rect(vector.x, vector.y, 150f, 60f), string.Format("<size=12><color=#ff0000ff>{0}</color></size>", Math.Round((double)num)));
+
+                                    if (EspMenu.PlayerEspBoxes)
+                                    { //box will be 60x and 150y
+                                        //top and bottom
+                                        new Rect(vector.x, vector.y, 60f, 1f);
+                                        new Rect(vector.x + 150, vector.y, 60f, 1f);
+                                        //sides
+                                        new Rect(vector.x, vector.y, 150f, 1f);
+                                        new Rect(vector.x, vector.y + 60, 150f, 1f);
+                                    }
 								}
 							}
 						}
@@ -119,8 +129,17 @@ namespace BeyondCheatFree
 								vector2.y = (float)Screen.height - vector2.y;
 								if (EspMenu.ShowZombies)
 								{
-									GUI.Label(new Rect(vector2.x, vector2.y, 150f, 60f), string.Format("<size=12><color=#0000ffff>{0}</color></size>\n<size=12>{1}</size>", zombie.name, Math.Round((double)num2)));
-								}
+									GUI.Label(new Rect(vector2.x, vector2.y, 150f, 60f), string.Format("<size=12><color=#0000ffff>{0}</color></size>", Math.Round((double)num2)));
+                                    if (EspMenu.PlayerEspBoxes)
+                                    {
+                                        //top/bottom
+                                        new Rect(vector2.x, vector2.y, 60f, 1f);
+                                        new Rect(vector2.x + 150, vector2.y, 60f, 1f);
+                                        //sides
+                                        new Rect(vector2.x, vector2.y, 1f, 150f);
+                                        new Rect(vector2.x, vector2.y + 60, 1f, 150f);
+                                    }
+                                }
 							}
 						}
 					}

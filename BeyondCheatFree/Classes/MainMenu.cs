@@ -31,7 +31,7 @@ namespace BeyondCheatFree
 				return;
 			}
 			GUI.skin = Menu.Skin;
-			GUILayout.BeginArea(new Rect((float)(Screen.width / 2 - 250), (float)(Screen.height / 2 - 250), 520f, 450f), "POSEIDON", GUI.skin.GetStyle("window"));
+			GUILayout.BeginArea(new Rect((float)(Screen.width / 2 - 250), (float)(Screen.height / 2 - 250), 520f, 450f), "Hake", GUI.skin.GetStyle("window"));
 			GUILayout.BeginHorizontal(new GUILayoutOption[0]);
 			GUILayout.BeginVertical(new GUILayoutOption[0]);
 			MainMenu.NoRecoil = GUILayout.Toggle(MainMenu.NoRecoil, "No recoil", new GUILayoutOption[0]);
@@ -39,10 +39,10 @@ namespace BeyondCheatFree
 			MainMenu.NoSpread = GUILayout.Toggle(MainMenu.NoSpread, "No spread", new GUILayoutOption[0]);
 			this._zoom = GUILayout.Toggle(this._zoom, "Enable FOV", new GUILayoutOption[0]);
 			GUILayout.Space(50f);
-            MainMenu.Aimbot_Enable = GUILayout.Toggle(MainMenu.NoSpread, "Enable Aimbot", new GUILayoutOption[0]);
-            MainMenu.Aimbot_Players = GUILayout.Toggle(MainMenu.NoSpread, "At Players", new GUILayoutOption[0]);
-            MainMenu.Aimbot_Zombies = GUILayout.Toggle(MainMenu.NoSpread, "At Zombies", new GUILayoutOption[0]);
-            MainMenu.Aimbot_Animals = GUILayout.Toggle(MainMenu.NoSpread, "At Animals", new GUILayoutOption[0]);
+            MainMenu.Aimbot_Enable = GUILayout.Toggle(MainMenu.Aimbot_Enable, "Enable Aimbot", new GUILayoutOption[0]);
+            MainMenu.Aimbot_Players = GUILayout.Toggle(MainMenu.Aimbot_Players, "At Players", new GUILayoutOption[0]);
+            MainMenu.Aimbot_Zombies = GUILayout.Toggle(MainMenu.Aimbot_Zombies, "At Zombies", new GUILayoutOption[0]);
+            MainMenu.Aimbot_Animals = GUILayout.Toggle(MainMenu.Aimbot_Animals, "At Animals", new GUILayoutOption[0]);
 
             //GUILayout.Label(MainMenu.WebText, new GUILayoutOption[0]);
             //GUILayout.Label("cmpnds.team", new GUILayoutOption[0]);
@@ -118,17 +118,21 @@ namespace BeyondCheatFree
 		}
 
 		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
-		private void DisableBallistic()
+		public void DisableBallistic()
 		{
-			FieldInfo field2 = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
-            if (field2 != null)
-            {
-                field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
-            }
-		}
+			typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+            typeof(ItemBarrelAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
+            typeof(ItemGunAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+            typeof(ItemBarrelAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public).SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0f);
 
-		// Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
-		private void Update()
+            //if (field2 != null)
+            //{
+            //    field2.SetValue((ItemGunAsset)Player.player.equipment.asset, 0.002f);
+            //}
+        }
+
+        // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
+        private void Update()
 		{
 			if (this._zoom)
 			{

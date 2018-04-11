@@ -8,6 +8,7 @@ namespace BeyondCheatFree
 	// Token: 0x02000003 RID: 3
 	internal class EspMenu : MonoBehaviour
 	{
+        MainMenu MAINMENU = new MainMenu();
 		// Token: 0x06000005 RID: 5 RVA: 0x00002664 File Offset: 0x00000864
 		private void OnGUI()
 		{
@@ -25,18 +26,24 @@ namespace BeyondCheatFree
 			EspMenu.InfDist = GUILayout.Toggle(EspMenu.InfDist, "Infinite ESP distance", new GUILayoutOption[0]);
 			GUILayout.Space(8f);
 			EspMenu.ShowPlayers = GUILayout.Toggle(EspMenu.ShowPlayers, "Show players name", new GUILayoutOption[0]);
-			EspMenu.ShowZombies = GUILayout.Toggle(EspMenu.ShowZombies, "Show zombies name", new GUILayoutOption[0]);
-			EspMenu.ShowItems = GUILayout.Toggle(EspMenu.ShowItems, "Show items", new GUILayoutOption[0]);
+            EspMenu.PlayerEspBoxes = GUILayout.Toggle(EspMenu.PlayerEspBoxes, "Boxes", new GUILayoutOption[0]);
+            EspMenu.ShowZombies = GUILayout.Toggle(EspMenu.ShowZombies, "Show zombies name", new GUILayoutOption[0]);
+            EspMenu.ZombieEspBoxes = GUILayout.Toggle(EspMenu.ZombieEspBoxes, "Boxes", new GUILayoutOption[0]);
+            EspMenu.ShowItems = GUILayout.Toggle(EspMenu.ShowItems, "Show items", new GUILayoutOption[0]);
 			EspMenu.ShowVehicles = GUILayout.Toggle(EspMenu.ShowVehicles, "Show vehicles", new GUILayoutOption[0]);
 			if (GUILayout.Button("Glow players" + Menu.GetToggleText(EspMenu.PlayersGlow), new GUILayoutOption[0]))
 			{
 				EspMenu.ToggleGlowPlayers();
 			}
-			if (GUILayout.Button("Glow zombies" + Menu.GetToggleText(EspMenu.ZombieGlow), new GUILayoutOption[0]))
-			{
-				EspMenu.ToggleGlowZombies();
-			}
-			GUILayout.EndVertical();
+            if (GUILayout.Button("Glow zombies" + Menu.GetToggleText(EspMenu.ZombieGlow), new GUILayoutOption[0]))
+            {
+                EspMenu.ToggleGlowZombies();
+            }
+            if (GUILayout.Button("Disable Ballistics" + Menu.GetToggleText(EspMenu.ZombieGlow), new GUILayoutOption[0]))
+            {
+                MAINMENU.DisableBallistic();
+            }
+            GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
 			GUILayout.EndArea();
 		}
@@ -97,8 +104,12 @@ namespace BeyondCheatFree
 		// Token: 0x04000008 RID: 8
 		public static bool ShowPlayers;
 
-		// Token: 0x04000009 RID: 9
-		public static bool ShowZombies;
+        public static bool PlayerEspBoxes;
+
+        public static bool ZombieEspBoxes;
+
+        // Token: 0x04000009 RID: 9
+        public static bool ShowZombies;
 
 		// Token: 0x0400000A RID: 10
 		public static bool ShowItems;
