@@ -46,7 +46,7 @@ namespace BeyondCheatFree
             GUILayout.EndVertical();
             GUILayout.BeginVertical(new GUILayoutOption[0]);
 
-            if (GUILayout.Button("Disable Ballistics", new GUILayoutOption[0]))
+            if (GUILayout.Button("Ballistic Force off", new GUILayoutOption[0]))
             {
                 DisableBallistic();
             }
@@ -66,19 +66,19 @@ namespace BeyondCheatFree
 				LevelLighting.updateLocal();
 				PlayerLifeUI.updateGrayscale();
 			}
-			if (GUILayout.Button("Disable timers", new GUILayoutOption[0]))
+			if (GUILayout.Button("No Respawn Timer", new GUILayoutOption[0]))
 			{
 				this.DisableTimers();
 			}
-			if (GUILayout.Button("No fog" + Menu.GetToggleText(RenderSettings.fog), new GUILayoutOption[0]))
+			if (GUILayout.Button("No Fog" + Menu.GetToggleText(RenderSettings.fog), new GUILayoutOption[0]))
 			{
 				RenderSettings.fog = !RenderSettings.fog;
 			}
-			if (GUILayout.Button("Disable rain", new GUILayoutOption[0]))
+			if (GUILayout.Button("No Rain", new GUILayoutOption[0]))
 			{
 				LevelLighting.rainyness = 0;
 			}
-			if (GUILayout.Button("Disable snow", new GUILayoutOption[0]))
+			if (GUILayout.Button("No Snow", new GUILayoutOption[0]))
 			{
 				LevelLighting.snowLevel = 0f;
 				RenderSettings.fogDensity = 0f;
