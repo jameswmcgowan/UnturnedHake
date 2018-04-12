@@ -102,20 +102,16 @@ namespace UnturnedHake
 		// Token: 0x06000013 RID: 19 RVA: 0x00002F9C File Offset: 0x0000119C
 		public void DisableBallistic()
 		{
-            //one of these will do it :o
             FieldInfo field = typeof(ItemGunAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
             FieldInfo field2 = typeof(ItemBarrelAsset).GetField("ballisticDrop", BindingFlags.Instance | BindingFlags.Public);
-            FieldInfo field3 = typeof(ItemGunAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public);
-            FieldInfo field4 = typeof(ItemBarrelAsset).GetField("Ballistic_Drop", BindingFlags.Instance | BindingFlags.Public);
-            if (field != null) field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0);               
-	        if (field2 != null) field2.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0);
-	        if (field3 != null) field3.SetValue((ItemGunAsset)Player.player.equipment.asset, 0);	    	
-	        if (field4 != null) field4.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0);
+            field.SetValue((ItemGunAsset)Player.player.equipment.asset, 0);               
+	        field2.SetValue((ItemBarrelAsset)Player.player.equipment.asset, 0);
         }
 
         // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
         private void Update()
 		{
+            DisableSprintGlitch();
 			if (this._zoom)
 			{
 				if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -159,6 +155,30 @@ namespace UnturnedHake
                 AIMBOTTAB.Update();
             }
 		}
+        bool resprinting = false;
+        private void DisableSprintGlitch()
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                foreach (Zombie zombie in FindObjectsOfType<Zombie>())
+                {
+                    ZombieManager.sendZombieDead(zombie, new Vector3(0, 0, 0));
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1) && Player.player.stance.stance == EPlayerStance.SPRINT)
+            {
+                Player.player.stance.stance = EPlayerStance.STAND;
+                //resprinting = true;
+            }
+            
+            //if (resprinting && Input.GetKeyUp(KeyCode.Mouse0))
+            //{
+            //    resprinting = false;
+            //    //((UseableGun)Player.player.equipment.useable).isAiming = false;
+            //    Player.player.stance.stance = EPlayerStance.SPRINT;
+            //}
+        }
 
 		// Token: 0x06000015 RID: 21 RVA: 0x000030E0 File Offset: 0x000012E0
 		private void DisableSpread()
@@ -166,14 +186,11 @@ namespace UnturnedHake
 			if (this._spreadCache <= 0)
 			{
 				this._spreadCache = 30;
-				FieldInfo spreadAim = MainMenu.SpreadAim;
-				float num = (float)((spreadAim != null) ? spreadAim.GetValue((ItemGunAsset)Player.player.equipment.asset) : null);
-				FieldInfo spreadHip = MainMenu.SpreadHip;
-				float num2 = (float)((spreadHip != null) ? spreadHip.GetValue((ItemGunAsset)Player.player.equipment.asset) : null);
-				MainMenu.SpreadAim.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-				MainMenu.SpreadHip.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
-				this.DisableBallistic();
-				return;
+                FieldInfo SpreadAim = typeof(ItemGunAsset).GetField("spreadAim", BindingFlags.Instance | BindingFlags.Public);
+                FieldInfo SpreadHip = typeof(ItemGunAsset).GetField("spreadHip", BindingFlags.Instance | BindingFlags.Public);
+                SpreadAim.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+                SpreadHip.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+                this.DisableBallistic();
 			}
 			this._spreadCache--;
 		}

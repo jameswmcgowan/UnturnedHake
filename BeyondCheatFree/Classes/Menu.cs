@@ -50,11 +50,11 @@ namespace UnturnedHake
 				typeof(PlayerLook).GetMethod("recoil", BindingFlags.Instance | BindingFlags.Public),
 				typeof(PLook).GetMethod("recoil", BindingFlags.Instance | BindingFlags.Public)
 			};
-			MethodBase[] array2 = new MethodBase[]
-			{
-				typeof(PlayerLook).GetMethod("enableScope", BindingFlags.Instance | BindingFlags.Public),
-				typeof(PLook).GetMethod("enableScope", BindingFlags.Instance | BindingFlags.Public)
-			};
+			//MethodBase[] array2 = new MethodBase[]
+			//{
+			//	typeof(PlayerLook).GetMethod("enableScope", BindingFlags.Instance | BindingFlags.Public),
+			//	typeof(PLook).GetMethod("enableScope", BindingFlags.Instance | BindingFlags.Public)
+			//};
 			MethodBase[] array3 = new MethodBase[]
 			{
 				typeof(Player).GetMethod("askScreenshot", BindingFlags.Instance | BindingFlags.Public),
@@ -72,7 +72,7 @@ namespace UnturnedHake
 				})
 			};
 			MethodUtil.Hook(array[0], array[1]);
-			MethodUtil.Hook(array2[0], array2[1]);
+			//MethodUtil.Hook(array2[0], array2[1]);
 			MethodUtil.Hook(array4[0], array4[1]);
 			//MethodUtil.Hook(array3[0], array3[1]);
 		}
