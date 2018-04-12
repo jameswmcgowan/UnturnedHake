@@ -71,7 +71,7 @@ namespace UnturnedHake
 					typeof(object)
 				})
 			};
-			MethodUtil.Hook(array[0], array[1]);
+			//MethodUtil.Hook(array[0], array[1]);
 			//MethodUtil.Hook(array2[0], array2[1]);
 			MethodUtil.Hook(array4[0], array4[1]);
 			//MethodUtil.Hook(array3[0], array3[1]);

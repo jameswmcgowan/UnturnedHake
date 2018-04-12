@@ -16,12 +16,12 @@ namespace UnturnedHake
         // Token: 0x06000010 RID: 16 RVA: 0x00002C7B File Offset: 0x00000E7B
         private void Start()
 		{
-			MainMenu.SpreadAim = typeof(ItemGunAsset).GetField("spreadAim", BindingFlags.Instance | BindingFlags.Public);
-			MainMenu.SpreadHip = typeof(ItemGunAsset).GetField("spreadHip", BindingFlags.Instance | BindingFlags.Public);
+			//MainMenu.SpreadAim = typeof(ItemGunAsset).GetField("spreadAim", BindingFlags.Instance | BindingFlags.Public);
+			//MainMenu.SpreadHip = typeof(ItemGunAsset).GetField("spreadHip", BindingFlags.Instance | BindingFlags.Public);
 		}
 
-		// Token: 0x06000011 RID: 17 RVA: 0x00002CB4 File Offset: 0x00000EB4
-		private void OnGUI()
+        // Token: 0x06000011 RID: 17 RVA: 0x00002CB4 File Offset: 0x00000EB4
+        private void OnGUI()
 		{
 			if (Menu.MenuOpened != 1)
 			{
@@ -77,6 +77,13 @@ namespace UnturnedHake
             if (GUILayout.Button("No Rain", new GUILayoutOption[0]))
             {
                 LevelLighting.rainyness = 0;
+            }
+            if (GUILayout.Button("Kill All Zombies", new GUILayoutOption[0]))
+            {
+                foreach (Zombie zombie in FindObjectsOfType<Zombie>())
+                {
+                    ZombieManager.sendZombieDead(zombie, new Vector3(0, 0, 0));
+                }
             }
             GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
@@ -158,13 +165,7 @@ namespace UnturnedHake
         bool resprinting = false;
         private void DisableSprintGlitch()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                foreach (Zombie zombie in FindObjectsOfType<Zombie>())
-                {
-                    ZombieManager.sendZombieDead(zombie, new Vector3(0, 0, 0));
-                }
-            }
+            LightingManager.time = (uint)(LightingManager.cycle * LevelLighting.transition);
 
             if (Input.GetKeyDown(KeyCode.Mouse1) && Player.player.stance.stance == EPlayerStance.SPRINT)
             {
@@ -190,6 +191,17 @@ namespace UnturnedHake
                 FieldInfo SpreadHip = typeof(ItemGunAsset).GetField("spreadHip", BindingFlags.Instance | BindingFlags.Public);
                 SpreadAim.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
                 SpreadHip.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+
+
+                FieldInfo recoilxmin = typeof(ItemGunAsset).GetField("recoilMin_x", BindingFlags.Instance | BindingFlags.Public);
+                FieldInfo recoilymin = typeof(ItemGunAsset).GetField("recoilMin_y", BindingFlags.Instance | BindingFlags.Public);
+                recoilxmin.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+                recoilymin.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+                FieldInfo recoilxmax = typeof(ItemGunAsset).GetField("recoilMax_x", BindingFlags.Instance | BindingFlags.Public);
+                FieldInfo recoilyax = typeof(ItemGunAsset).GetField("recoilMax_y", BindingFlags.Instance | BindingFlags.Public);
+                recoilxmax.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+                recoilyax.SetValue((ItemGunAsset)Player.player.equipment.asset, 0f);
+
                 this.DisableBallistic();
 			}
 			this._spreadCache--;
