@@ -219,7 +219,7 @@ namespace UnturnedHake
 
         float temp_dist = 200;
         float distToPlayer;
-
+        public string tempname;
 
         public void AIMING()
         {
@@ -227,43 +227,72 @@ namespace UnturnedHake
             {
                 foreach (Player player in ESPATTACK._players)
                 {
+                    
                     if (!(player == null))
                     {
-                        Vector3 position = player.transform.position;
-                        distToPlayer = Vector3.Distance(position, ESPATTACK._pCamera.transform.position);
-                        if (!(Player.player.name == player.name))
+                        tempname = player.name;
+
+                        if (FriendList.Contains(tempname))
                         {
-                            Vector3 vector = ESPATTACK._pCamera.WorldToScreenPoint(position);
-
-                            if (vector.z >= 0f) vector.y = (float)UnityEngine.Screen.height - vector.y;
-
-                            if (distToPlayer < temp_dist)
+                            return;
+                        }
+                        else
+                        { 
+                            Vector3 position = player.transform.position;
+                            distToPlayer = Vector3.Distance(position, ESPATTACK._pCamera.transform.position);
+                            if (!(Player.player.name == player.name))
                             {
-                                temp_dist = distToPlayer;
-                            }
-                            else
-                            {
-                                return;
-                            }
+                                Vector3 vector = ESPATTACK._pCamera.WorldToScreenPoint(position);
 
-                            Camera.main.transform.LookAt(vector);
-                            float num4 = Camera.main.transform.localRotation.eulerAngles.x;
-                            if (num4 <= 90f && num4 <= 270f)
-                            {
-                                num4 = Camera.main.transform.localRotation.eulerAngles.x + 90f;
-                            }
-                            else if (num4 >= 270f && num4 <= 360f)
-                            {
-                                num4 = Camera.main.transform.localRotation.eulerAngles.x - 270f;
-                            }
-                            typeof(ItemGunAsset).GetField("_pitch", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(player.look, num4);
-                            typeof(ItemGunAsset).GetField("_yaw", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(player.look, player.transform.rotation.eulerAngles.y);
+                                if (vector.z >= 0f) vector.y = (float)UnityEngine.Screen.height - vector.y;
 
+                                if (distToPlayer < temp_dist)
+                                {
+                                    temp_dist = distToPlayer;
+                                }
+                                else
+                                {
+                                    return;
+                                }
+
+                                Camera.main.transform.LookAt(vector);
+                                float num4 = Camera.main.transform.localRotation.eulerAngles.x;
+                                if (num4 <= 90f && num4 <= 270f)
+                                {
+                                    num4 = Camera.main.transform.localRotation.eulerAngles.x + 90f;
+                                }
+                                else if (num4 >= 270f && num4 <= 360f)
+                                {
+                                    num4 = Camera.main.transform.localRotation.eulerAngles.x - 270f;
+                                }
+                                typeof(ItemGunAsset).GetField("_pitch", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(player.look, num4);
+                                typeof(ItemGunAsset).GetField("_yaw", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(player.look, player.transform.rotation.eulerAngles.y);
+
+                            }
                         }
                     }
                 }
             }
         }
+
+        public void CreateFriendButtons()
+        {
+            foreach (Player player in ESPATTACK._players)
+            {
+                if (GUILayout.Button(player.name + (FriendList.Contains(player.name) ? "(Friend)" : "(Enemy)"), new GUILayoutOption[0]))
+                {
+                    if (FriendList.Contains(player.name))
+                    {
+                        FriendList.Replace(" " + player.name, "");
+                    }
+                    else
+                    {
+                    FriendList += " " + player.name;
+                    }
+                }
+            }
+        }
+    
 
         public static bool Aimbot_Master;
 
@@ -323,5 +352,7 @@ namespace UnturnedHake
 
 		// Token: 0x04000024 RID: 36
 		private float _zoomSize;
+
+        public string FriendList;
 	}
 }
