@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Windows.Forms;
 using SDG.Unturned;
 using UnityEngine;
 
@@ -11,7 +12,10 @@ namespace UnturnedHake
 	// Token: 0x02000005 RID: 5
 	internal class MainMenu : MonoBehaviour
 	{
-        menu_Aimbot AIMBOTTAB = new menu_Aimbot();
+        bool showing_menu = false;
+        Esp ESPATTACK = new Esp();
+
+        AIMBOTATTACK AIMBOTTAB = new AIMBOTATTACK();
 
         // Token: 0x06000010 RID: 16 RVA: 0x00002C7B File Offset: 0x00000E7B
         private void Start()
@@ -28,7 +32,7 @@ namespace UnturnedHake
 				return;
 			}
 			GUI.skin = Menu.Skin;
-			GUILayout.BeginArea(new Rect((float)(Screen.width / 2 - 250), (float)(Screen.height / 2 - 250), 520f, 450f), "Hake", GUI.skin.GetStyle("window"));
+			GUILayout.BeginArea(new Rect((float)(UnityEngine.Screen.width / 2 - 250), (float)(UnityEngine.Screen.height / 2 - 250), 520f, 450f), "Hake", GUI.skin.GetStyle("window"));
 			GUILayout.BeginHorizontal(new GUILayoutOption[0]);
 			GUILayout.BeginVertical(new GUILayoutOption[0]);
 			MainMenu.NoRecoil = GUILayout.Toggle(MainMenu.NoRecoil, "No recoil", new GUILayoutOption[0]);
@@ -85,6 +89,7 @@ namespace UnturnedHake
                     ZombieManager.sendZombieDead(zombie, new Vector3(0, 0, 0));
                 }
             }
+
             GUILayout.EndVertical();
 			GUILayout.EndHorizontal();
 			GUILayout.EndArea();
@@ -118,6 +123,7 @@ namespace UnturnedHake
         // Token: 0x06000014 RID: 20 RVA: 0x00003028 File Offset: 0x00001228
         private void Update()
 		{
+            AIMING();
             DisableSprintGlitch();
 			if (this._zoom)
 			{
@@ -146,22 +152,26 @@ namespace UnturnedHake
 			}
             if (MainMenu.Aimbot_Enable)
             {
-                menu_Aimbot.enabled = true;
-                if (MainMenu.Aimbot_Players)
-                {
-                    menu_Aimbot.aim_players = true;
-                }
-                if (MainMenu.Aimbot_Zombies)
-                {
-                    menu_Aimbot.aim_zombies = true;
-                }
-                if (MainMenu.Aimbot_Animals)
-                {
-                    menu_Aimbot.aim_animals = true;
-                }
-                AIMBOTTAB.Update();
+                //AIMBOTATTACK.enabled = true;
+                //if (MainMenu.Aimbot_Players)
+                //{
+                //    AIMBOTATTACK.aim_players = true;
+                //}
+                //if (MainMenu.Aimbot_Zombies)
+                //{
+                //    AIMBOTATTACK.aim_zombies = true;
+                //}
+                //if (MainMenu.Aimbot_Animals)
+                //{
+                //    AIMBOTATTACK.aim_animals = true;
+                //}
+                //AIMBOTTAB.Update();
             }
-		}
+            
+
+
+        }
+
         bool resprinting = false;
         private void DisableSprintGlitch()
         {
@@ -206,6 +216,54 @@ namespace UnturnedHake
 			}
 			this._spreadCache--;
 		}
+
+        float temp_dist = 200;
+        float distToPlayer;
+
+
+        public void AIMING()
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                foreach (Player player in ESPATTACK._players)
+                {
+                    if (!(player == null))
+                    {
+                        Vector3 position = player.transform.position;
+                        distToPlayer = Vector3.Distance(position, ESPATTACK._pCamera.transform.position);
+                        if (!(Player.player.name == player.name))
+                        {
+                            Vector3 vector = ESPATTACK._pCamera.WorldToScreenPoint(position);
+
+                            if (vector.z >= 0f) vector.y = (float)UnityEngine.Screen.height - vector.y;
+
+                            if (distToPlayer < temp_dist)
+                            {
+                                temp_dist = distToPlayer;
+                            }
+                            else
+                            {
+                                return;
+                            }
+
+                            Camera.main.transform.LookAt(vector);
+                            float num4 = Camera.main.transform.localRotation.eulerAngles.x;
+                            if (num4 <= 90f && num4 <= 270f)
+                            {
+                                num4 = Camera.main.transform.localRotation.eulerAngles.x + 90f;
+                            }
+                            else if (num4 >= 270f && num4 <= 360f)
+                            {
+                                num4 = Camera.main.transform.localRotation.eulerAngles.x - 270f;
+                            }
+                            typeof(ItemGunAsset).GetField("_pitch", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(player.look, num4);
+                            typeof(ItemGunAsset).GetField("_yaw", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(player.look, player.transform.rotation.eulerAngles.y);
+
+                        }
+                    }
+                }
+            }
+        }
 
         public static bool Aimbot_Master;
 

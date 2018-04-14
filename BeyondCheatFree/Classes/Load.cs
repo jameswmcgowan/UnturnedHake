@@ -13,6 +13,7 @@ namespace UnturnedHake
 		public void initialize()
 		{
 			GameObject gameObject = new GameObject();
+            
 			UnityEngine.Object.DontDestroyOnLoad(gameObject);
 			gameObject.AddComponent<Menu>();
 			gameObject.AddComponent<MainMenu>();

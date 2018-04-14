@@ -211,10 +211,10 @@ namespace UnturnedHake
 		private InteractableItem[] _items;
 
 		// Token: 0x04000004 RID: 4
-		private Camera _pCamera;
+		public Camera _pCamera;
 
 		// Token: 0x04000005 RID: 5
-		private Player[] _players;
+		public Player[] _players;
 
 		// Token: 0x04000006 RID: 6
 		private InteractableVehicle[] _vehicles;
