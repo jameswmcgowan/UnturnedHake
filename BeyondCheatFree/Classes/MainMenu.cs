@@ -324,6 +324,7 @@ namespace UnturnedHake
                     }
                 }
             }
+            GUILayout.Space(50f);
             foreach (Friend f in friends)
             {
                 if (GUILayout.Button(f.displayName))
