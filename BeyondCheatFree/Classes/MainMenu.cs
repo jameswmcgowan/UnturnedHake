@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Windows.Forms;
 using SDG.Unturned;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 
 
@@ -32,7 +34,7 @@ namespace UnturnedHake
 				return;
 			}
 			GUI.skin = Menu.Skin;
-			GUILayout.BeginArea(new Rect((float)(UnityEngine.Screen.width / 2 - 250), (float)(UnityEngine.Screen.height / 2 - 250), 520f, 450f), "Hake", GUI.skin.GetStyle("window"));
+			GUILayout.BeginArea(new Rect((float)(UnityEngine.Screen.width / 2 - 250), (float)(UnityEngine.Screen.height / 2 - 250), 700f, 700f), "Hake", GUI.skin.GetStyle("window"));
 			GUILayout.BeginHorizontal(new GUILayoutOption[0]);
 			GUILayout.BeginVertical(new GUILayoutOption[0]);
 			MainMenu.NoRecoil = GUILayout.Toggle(MainMenu.NoRecoil, "No recoil", new GUILayoutOption[0]);
@@ -90,10 +92,27 @@ namespace UnturnedHake
                 }
             }
 
+            GUILayout.Space(50f);
+            
+
             GUILayout.EndVertical();
-			GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal();
 			GUILayout.EndArea();
-		}
+
+            GUILayout.BeginArea(new Rect((float)((UnityEngine.Screen.width / 2 - 250) + 720), (float)(UnityEngine.Screen.height / 2 - 250), 200f, 800f), "Friend Menu", GUI.skin.GetStyle("window"));
+            GUILayout.BeginHorizontal(new GUILayoutOption[0]);
+            GUILayout.BeginVertical(new GUILayoutOption[0]);
+
+            GUILayout.Label(FriendList, new GUILayoutOption[0]);
+            if (GUILayout.Button("Refresh Friends List", new GUILayoutOption[0]))
+            {
+                CreateFriendButtons();
+            }
+            GUILayout.EndVertical();
+
+            GUILayout.EndHorizontal();
+            GUILayout.EndArea();
+        }
 
 		// Token: 0x06000012 RID: 18 RVA: 0x00002F38 File Offset: 0x00001138
 		private void DisableTimers()
@@ -230,9 +249,13 @@ namespace UnturnedHake
                     
                     if (!(player == null))
                     {
-                        tempname = player.name;
+                        //tempname = player.name;
 
-                        if (FriendList.Contains(tempname))
+                        //if (FriendList.Contains(tempname))
+                        //{
+                        //    return;
+                        //}
+                        if (isFriend(player))
                         {
                             return;
                         }
@@ -277,22 +300,60 @@ namespace UnturnedHake
 
         public void CreateFriendButtons()
         {
-            foreach (Player player in ESPATTACK._players)
+            //foreach (Player player in FindObjectsOfType<Player>())
+            //{
+            //    if (GUILayout.Button(player.name + (FriendList.Contains(player.name) ? "(Friend)" : "(Enemy)")))
+            //    {
+            //        if (FriendList.Contains(player.name))
+            //        {
+            //            FriendList.Replace(" " + player.name, "");
+            //        }
+            //        else
+            //        {
+            //            FriendList += " " + player.name;
+            //        }
+            //    }
+            //}
+            foreach (SteamPlayer sp in Provider.clients.ToArray())
             {
-                if (GUILayout.Button(player.name + (FriendList.Contains(player.name) ? "(Friend)" : "(Enemy)"), new GUILayoutOption[0]))
+                if (!isFriend(sp) && sp.player != MiscFunctions.getLocalPlayer())
                 {
-                    if (FriendList.Contains(player.name))
+                    if (GUILayout.Button(sp.playerID.playerName))
                     {
-                        FriendList.Replace(" " + player.name, "");
-                    }
-                    else
-                    {
-                    FriendList += " " + player.name;
+                        addFriend(sp);
                     }
                 }
             }
+            foreach (Friend f in friends)
+            {
+                if (GUILayout.Button(f.displayName))
+                {
+                    removeFriend(f);
+                }
+            }
         }
-    
+
+        public void addFriend(SteamPlayer player)
+        {
+            friends.Add(new Friend(player.player.name, player.playerID.playerName, player.playerID.steamID.m_SteamID));
+        }
+
+        public void removeFriend(Friend f)
+        {
+            friends.Remove(f);
+        }
+
+        public bool isFriend(SteamPlayer player)
+        {
+            return Array.Exists(friends.ToArray(), a => a.ID == player.playerID.steamID.m_SteamID);
+        }
+
+        public bool isFriend(Player player)
+        {
+            return Array.Exists(friends.ToArray(), a => a.ID == MiscFunctions.getPlayerID(player));
+        }
+
+
 
         public static bool Aimbot_Master;
 
@@ -354,5 +415,7 @@ namespace UnturnedHake
 		private float _zoomSize;
 
         public string FriendList;
-	}
+
+        private List<Friend> friends = new List<Friend>();
+    }
 }

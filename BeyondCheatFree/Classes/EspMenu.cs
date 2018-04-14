@@ -25,9 +25,9 @@ namespace UnturnedHake
 			EspMenu.EspDistance = GUILayout.HorizontalSlider(EspMenu.EspDistance, 10f, 1000f, new GUILayoutOption[0]);
 			EspMenu.InfDist = GUILayout.Toggle(EspMenu.InfDist, "Infinite ESP distance", new GUILayoutOption[0]);
 			GUILayout.Space(8f);
-			EspMenu.ShowPlayers = GUILayout.Toggle(EspMenu.ShowPlayers, "Show players name", new GUILayoutOption[0]);
+			EspMenu.ShowPlayers = GUILayout.Toggle(EspMenu.ShowPlayers, "Show players distance", new GUILayoutOption[0]);
             EspMenu.PlayerEspBoxes = GUILayout.Toggle(EspMenu.PlayerEspBoxes, "Boxes", new GUILayoutOption[0]);
-            EspMenu.ShowZombies = GUILayout.Toggle(EspMenu.ShowZombies, "Show zombies name", new GUILayoutOption[0]);
+            EspMenu.ShowZombies = GUILayout.Toggle(EspMenu.ShowZombies, "Show zombies distance", new GUILayoutOption[0]);
             EspMenu.ZombieEspBoxes = GUILayout.Toggle(EspMenu.ZombieEspBoxes, "Boxes", new GUILayoutOption[0]);
             EspMenu.ShowItems = GUILayout.Toggle(EspMenu.ShowItems, "Show items", new GUILayoutOption[0]);
 			EspMenu.ShowVehicles = GUILayout.Toggle(EspMenu.ShowVehicles, "Show vehicles", new GUILayoutOption[0]);

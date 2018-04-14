@@ -64,6 +64,7 @@
     <Compile Include="Classes\BeyondConfig.cs" />
     <Compile Include="Classes\Esp.cs" />
     <Compile Include="Classes\EspMenu.cs" />
+    <Compile Include="Classes\Friend.cs" />
     <Compile Include="Classes\HPlr.cs" />
     <Compile Include="Classes\Load.cs" />
     <Compile Include="Classes\MainMenu.cs" />
